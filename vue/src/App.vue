@@ -1,5 +1,5 @@
 <template>
-  <h1 class="text-center">HellenWeb</h1>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -9,4 +9,5 @@ export default {
 </script>
 
 <style>
+@import 'bootstrap';
 </style>
