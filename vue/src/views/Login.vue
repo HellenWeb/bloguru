@@ -33,12 +33,15 @@
     </div>
 </template>
 <script>
+import { useRouter } from 'vue-router'
+import store from '@/store/index'
+const router = useRouter()
 export default {
   name: 'MyLogin',
   data () {
     return {
       IsLoading: false,
-      API_URL: 'http://127.0.0.1:8000/',
+      API_URL: 'http://127.0.0.1:8000',
       email: '',
       password: '',
       error: null,
@@ -46,12 +49,15 @@ export default {
     }
   },
   methods: {
-    async login () {
-      return ''
+    sign_up (ev) {
+      ev.preventDefault()
+      store
+        .dispatch('sign_up', { email: this.email, password: this.password })
+        .then((res) => {
+          router.push({ name: 'Login' })
+        })
     },
-    async sign_up () {
-      return ''
-    }
+    login (ev) {}
   }
 }
 </script>
