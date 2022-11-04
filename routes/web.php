@@ -15,15 +15,3 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Route::post('/test', "App\Http\Controllers\Account@TestRequests")->name('test');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

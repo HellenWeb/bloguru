@@ -6,7 +6,7 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="ok card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-4 text-center">
-                        <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="mb-md-4 mt-md-4 pb-5">
                         <h4 class="fw-bold mb-2 text-uppercase">Login</h4>
                         <p class="text-white-50 mb-5">Please enter your login and password!</p>
                         <div class="form-outline form-white mb-4">
@@ -14,6 +14,9 @@
                         </div>
                         <div class="form-outline form-white mb-4">
                             <input v-model="password" name="password" type="password" placeholder="Password..." id="typePasswordX" class="fs-6 form-control form-control-lg" />
+                        </div>
+                        <div class="form-outline form-white mb-4">
+                            <input v-model="name" name="name" type="name" placeholder="Name..." id="typePasswordX" class="fs-6 form-control form-control-lg" />
                         </div>
                         <p class="small pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
                         <div class="">
@@ -33,9 +36,7 @@
     </div>
 </template>
 <script>
-import { useRouter } from 'vue-router'
 import store from '@/store/index'
-const router = useRouter()
 export default {
   name: 'MyLogin',
   data () {
@@ -44,6 +45,7 @@ export default {
       API_URL: 'http://127.0.0.1:8000',
       email: '',
       password: '',
+      name: '',
       error: null,
       user: null
     }
@@ -52,12 +54,18 @@ export default {
     sign_up (ev) {
       ev.preventDefault()
       store
-        .dispatch('sign_up', { email: this.email, password: this.password })
+        .dispatch('sign_up', { email: this.email, password: this.password, name: this.name })
         .then((res) => {
-          router.push({ name: 'Login' })
+          console.log('OK')
         })
     },
-    login (ev) {}
+    login (ev) {
+      ev.preventDefault()
+      store.dispatch('login', { email: this.email, password: this.password, name: this.name })
+        .then(res => {
+          console.log('OK')
+        })
+    }
   }
 }
 </script>
