@@ -45,14 +45,9 @@ class Authorization extends Controller
         ]);
         
         if (Auth::attempt($data)) {
-            $user = User::all();
-            $token = $user->createToken('main');
-            $accessToken = $token->accessToken;
             $req->session()->regenerate();
             return response()->json([
                 "user" => $data,
-                "token" => $token,
-                "accessToken" => $accessToken
             ]);
         }
 

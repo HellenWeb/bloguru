@@ -53,18 +53,11 @@ export default {
   methods: {
     sign_up (ev) {
       ev.preventDefault()
-      store
-        .dispatch('sign_up', { email: this.email, password: this.password, name: this.name })
-        .then((res) => {
-          console.log('OK')
-        })
+      store.dispatch('sign_up', { email: this.email, password: this.password, name: this.name })
     },
     login (ev) {
       ev.preventDefault()
       store.dispatch('login', { email: this.email, password: this.password, name: this.name })
-        .then(res => {
-          console.log('OK')
-        })
     }
   }
 }

@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.requiresAuth && !store.state.user.token) {
     next({ name: 'Login' })
   } else {
-    next()
+    next({ name: 'Main' })
   }
 })
 

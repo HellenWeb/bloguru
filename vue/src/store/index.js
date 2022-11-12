@@ -1,6 +1,7 @@
 
 // Modules
 
+import router from '@/router'
 import { createStore } from 'vuex'
 
 // Logic
@@ -24,11 +25,10 @@ const store = createStore({
         body: JSON.stringify(user)
       })
         .then(res => {
-          console.log(res.json())
-        })
-        .then(res => {
-          commit('setUser', res)
-          return res
+          if (res.ok === true) {
+            this.commit('setUser', res)
+            router.push({ name: 'Main' })
+          }
         })
     },
     login ({ commit }, user) {
@@ -41,20 +41,20 @@ const store = createStore({
         body: JSON.stringify(user)
       })
         .then(res => {
-          console.log(res.json())
-        })
-        .then(res => {
-          commit('setUser', res)
-          return res
+          if (res.ok === true) {
+            console.log(res)
+            this.commit('setUser', res)
+            router.push({ name: 'Main' })
+          }
         })
     }
   },
   mutations: {
-    logout: () => {
+    logout () {
       this.state.user.data = {}
       this.state.user.token = null
     },
-    setUser: (userData) => {
+    setUser (userData) {
       this.state.user.data = userData.user
       this.state.user.token = userData.token
       sessionStorage.setItem('TOKEN', userData.token)
